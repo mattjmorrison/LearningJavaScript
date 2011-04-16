@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Samples</title>
+</head>
+<body>
+    <div id="content"><h1>Howdy!</h1></div>
+<script type="text/javascript">
+    alert("running javascript in page");
+    var global_variable = "Matt Rules!";
+</script>
+<script src="js/one.js" type="text/javascript"></script>
+<script type="text/javascript">
+    alert("running javascript in page, after external script");
+    alert("global variable is now " + global_variable);
+</script>
+</body>
+</html>
