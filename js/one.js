@@ -1,10 +1,13 @@
 /* redefining built in functions */
 function alert(message){
     var content = document.getElementById('content');
+    var line_break = document.createElement("br");
     var message_node = document.createTextNode(message);
     var message_div = document.createElement("div");
     message_div.appendChild(message_node);
+    content.appendChild(line_break);
     content.appendChild(message_div);
+    content.appendChild(line_break);
 }
 
 alert("loaded external javascript file");
@@ -25,7 +28,6 @@ alert('Value of valueOne == "1": ' +  (valueOne == "1"));
 alert("Value of valueOne === 1: " +  (valueOne === 1));
 alert("Value of valueOne === '1': " +  (valueOne === '1'));
 alert('Value of valueOne === "1": ' +  (valueOne === "1"));
-
 
 /* conditions */
 var valueTwo = 0;
@@ -166,16 +168,6 @@ var myObject = {propertyOne:1, propertyTwo:2};
 alert("myObject.propertyOne: " + myObject.propertyOne);
 alert("myObject['propertyTwo']: " + myObject['propertyTwo']);
 
-/* DOM */
-
-var content = document.getElementById('content');
-alert(content.outerHTML);
-alert(content.innerHTML);
-var new_text = document.createTextNode("Here is some text added with JavaScript");
-var new_div = document.createElement("div");
-new_div.appendChild(new_text);
-content.appendChild(new_div);
-
 /* Timeouts */
 
 setTimeout(function(){
@@ -199,3 +191,37 @@ var interval = setInterval(function(){
         clearInterval(interval);
     }
 }, 1000);
+
+
+/* DOM */
+
+var content = document.getElementById('sample_node');
+alert(content.outerHTML);
+alert(content.innerHTML);
+var new_text = document.createTextNode("Here is some text added with JavaScript");
+var new_div = document.createElement("div");
+new_div.appendChild(new_text);
+content.appendChild(new_div);
+
+
+/* events */
+function addEvent(obj, evType, fn){
+    if (obj.addEventListener){
+        obj.addEventListener(evType, fn, false);
+        return true;
+    }
+    else if (obj.attachEvent){
+        return obj.attachEvent("on" + evType, fn);
+    }
+    else {
+        return false;
+    }
+}
+
+addEvent(window, 'load', function(){
+    alert("loaded");
+});
+
+addEvent(document, 'click', function(){
+   alert("clicked!!!!");
+});
